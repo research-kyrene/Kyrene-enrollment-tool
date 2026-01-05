@@ -6,14 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kyrene School Transition Tool</title>
     <style>
+        /* Blue background for the entire page */
+        body {
+            background-color: #284b96;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Make the widget stand out with white background */
         #kyrene-transfer-widget {
             display: block;
             box-sizing: border-box;
-            padding: 20px;
             background: #fff;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             width: 100%;
             overflow-x: hidden;
+            border-radius: 15px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         #kyrene-transfer-widget * {
@@ -23,6 +34,7 @@
             font-family: inherit;
         }
 
+        /* Remove the old .ky-container styles since we're using widget as container */
         #kyrene-transfer-widget .ky-container {
             max-width: 1100px;
             margin: 0 auto;
@@ -153,6 +165,11 @@
 
     /* Mobile optimizations */
         @media (max-width: 767px) {
+            /* Add some padding on mobile for the blue background */
+            body {
+                padding: 10px;
+            }
+            
             #kyrene-transfer-widget .ky-header {
                 padding: 20px 15px;
             }
@@ -179,6 +196,10 @@
 
         /* Very small screens */
         @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
             #kyrene-transfer-widget .ky-logo {
                 height: 35px;
             }
@@ -579,8 +600,7 @@
         }
 
         /* Prevent horizontal scrolling */
-        html,
-        body {
+        html {
             overflow-x: hidden;
             max-width: 100%;
         }
@@ -589,7 +609,6 @@
 
 <body>
     <div id="kyrene-transfer-widget">
-        <div class="ky-container">
             <header class="ky-header">
                 <div class="ky-header-content">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAXVBMVEXxWiPxWiLxWSLxWSLqVRnxWiLwVh5HcEzxWiL2Sh/xWSL3WB/rUxr6UxHxWSPxWSLxWiLxWiL3VBjyWCDxWSLxWSLxWiLxWSL4WBfyWCPxWiLxWiLxWSLxWSLxWiMFaX8VAAAAHnRSTlP+7uX1DPs4AP0CeCMrBVKP2KsUXMebsrsbRuDPbWYcRWRWAAABzUlEQVQ4y43V2barIAwG4B+ZEhBna6Vt3v8xz4WdPEXX9krX+gwmJAj/xwu7p3pk7+vQBsdn0ISq4RQUEenWHEM32Rx51AQBbDiCQ6uJboOZCCIC6q5FyOZGABYTK4iICGnn2ZUijoqAycRMG1TOD/1QgBwsKEezPJe+DbyqppSM6Qn2wasiAKQfPs22TwXIdUXURR47C5vviVdFypXKw60FpjpdxzBGZtcRaE6lgtcVgXKIiTld7xkAcizBdCEBbO7btu8sAdChGJHvFiIAWQIggJ1NuSmc2qotIgLsN3wHr90LgshOTTpqM3PDM5rNfTMc92NantDer+m0cS/bRosN7P8EsaRTyM+lBVV9Cs30gvTgMzh0b7iYM1hXLwjtzuCqPwWf+QQG+uzg/+nsmqL/QKGWD+G21QAgAqj9aYGfT4TqCCKgizmA3G6gbzSJiOg7l+HQkYjAjuZCEAGq78W/YKMhAsqRXbXN9lTHtf6BaYtDM3sOdksrZ/34gdscQK/e82vxr6n5HCkzEQQ0Ge+9j7ct/DL8fmM9KwLsuL3mMgF0i6Vkklvs+1jkRtEu7X0/PrJ+HWDcKD3y0Shw7Nv3fRMOx9V77/ng9/EPE0I9sCXmQ1EAAAAASUVORK5CYII=" alt="Kyrene School District Logo" class="ky-logo">
@@ -815,7 +834,6 @@
                     <button class="ky-btn ky-btn-secondary" onclick="resetForm()">Check Another Student</button>
                 </div>
             </div>
-        </div>
     </div>
 
     <script>
