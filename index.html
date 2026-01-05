@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kyrene School Transition Tool</title>
+    <style>
+        #kyrene-transfer-widget {
+            display: block;
+            box-sizing: border-box;
+            padding: 20px;
+            background: #fff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        #kyrene-transfer-widget * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        #kyrene-transfer-widget .ky-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        #kyrene-transfer-widget .ky-header {
+            background-color: #000755;
+            color: white;
+            padding: 30px 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #kyrene-transfer-widget .h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        #kyrene-transfer-widget .subtitle {
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        #kyrene-transfer-widget .notice {
+            background-color: #dadada;
+            color: #000755;
+            padding: 18px;
+            margin: 0;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        #kyrene-transfer-widget .notice a {
+            color: #35369e;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #kyrene-transfer-widget .notice a:hover {
+            text-decoration: underline;
+        }
+
+        #kyrene-transfer-widget .notice i {
+            margin-right: 10px;
+        }
+
+        #kyrene-transfer-widget .ky-header-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #kyrene-transfer-widget .ky-logo {
+            max-height: 50px;
+            width: auto;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        #kyrene-transfer-widget .ky-header-text {
+            text-align: left;
+        }
+
+        #kyrene-transfer-widget .h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        #kyrene-transfer-widget .subtitle {
+            font-size: 13px;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-logo {
+                max-height: 70px;
+            }
+            
+            #kyrene-transfer-widget .h1 {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+            
+            #kyrene-transfer-widget .subtitle {
+                font-size: 14px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-form-section {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-form-section {
+                padding: 30px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-form-section h2 {
+            color: #000755;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FF6633;
+            font-size: 22px;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-form-section h2 {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-form-group {
+            margin-bottom: 25px;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-form-group {
+                margin-bottom: 30px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #000755;
+            font-size: 15px;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-label {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+        }
+
+        #kyrene-transfer-widget select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: white;
+            -webkit-appearance: menulist-button;
+            appearance: menulist-button;
+            min-height: 50px;
+            max-width: 100%;
+        }
+
+        #kyrene-transfer-widget .ky-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: none;
+            padding: 0;
+            background-color: transparent;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-radio-group {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-radio-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-radius: 8px;
+            width: 100%;
+            border: 2px solid #e9ecef;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-radio-option {
+                flex: 1;
+                min-width: 200px;
+                padding: 12px 20px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-radio-option input {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            accent-color: #000755;
+            flex-shrink: 0;
+        }
+
+        #kyrene-transfer-widget .ky-btn {
+            display: inline-block;
+            background-color: #FF6633;
+            color: #ffffff;
+            padding: 16px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-btn {
+                padding: 16px 35px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-result-section {
+            padding: 20px;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-result-section {
+                padding: 30px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-result-box {
+            background-color: #f8f8f8;
+            padding: 20px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-result-box {
+                padding: 30px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-result-title {
+            color: #000755;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            word-wrap: break-word;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-result-title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-result-details {
+            font-size: 14px;
+            margin-bottom: 15px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        #kyrene-transfer-widget .ky-transfer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-transfer-container {
+                flex-direction: row;
+                gap: 25px;
+                margin: 25px 0;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-transfer-box {
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-transfer-box {
+                padding: 30px;
+                flex: 1;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-year-2026,
+        #kyrene-transfer-widget .ky-year-2027 {
+            background-color: #e6f3ff;
+            border: 3px solid #0056a9;
+        }
+
+        #kyrene-transfer-widget .ky-year-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #0056a9;
+            width: 100%;
+            text-align: center;
+            border-bottom: 2px solid rgba(0, 86, 169, 0.2);
+            padding-bottom: 10px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-wrap: break-word;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-year-title {
+                font-size: 20px;
+                margin-bottom: 25px;
+                padding-bottom: 15px;
+                min-height: 60px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-transfer-school {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000755;
+            margin: 0 0 10px 0;
+            line-height: 1.3;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-transfer-school {
+                font-size: 28px;
+                margin: 0 0 15px 0;
+                min-height: 85px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-feeding-info {
+            font-size: 14px;
+            color: #000755;
+            margin-top: 10px;
+            font-weight: 600;
+            padding: 10px;
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            border-left: 4px solid #0056a9;
+            border-right: 4px solid #0056a9;
+            width: 100%;
+            text-align: center;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-feeding-info {
+                font-size: 16px;
+                margin-top: 15px;
+                padding: 12px 15px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-btn-secondary {
+            background-color: #000755;
+            color: white;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-btn-secondary {
+                margin-top: 25px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-tuhsd-section {
+            background-color: #d8e7f0;
+            border-left: 6px solid #007cbf;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+            word-wrap: break-word;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-tuhsd-section {
+                padding: 25px;
+                margin: 25px 0;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-tuhsd-title {
+            color: #007cbf;
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-tuhsd-title {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-tuhsd-link {
+            display: inline-block;
+            background-color: #007cbf;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 12px;
+            text-align: center;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-tuhsd-link {
+                width: auto;
+                padding: 12px 25px;
+                margin-top: 15px;
+            }
+        }
+
+        #kyrene-transfer-widget .ky-special-group {
+            display: none;
+        }
+
+        /* Additional mobile-specific fixes */
+        @media (max-width: 767px) {
+            #kyrene-transfer-widget {
+                padding: 10px;
+            }
+
+            #kyrene-transfer-widget .ky-container {
+                border-radius: 10px;
+            }
+
+            #kyrene-transfer-widget .ky-form-section,
+            #kyrene-transfer-widget .ky-result-section {
+                padding: 15px;
+            }
+
+            #kyrene-transfer-widget .ky-result-box {
+                padding: 15px;
+            }
+
+            #kyrene-transfer-widget .ky-transfer-school {
+                font-size: 18px;
+                min-height: 50px;
+            }
+
+            #kyrene-transfer-widget .ky-year-title {
+                font-size: 16px;
+                min-height: 40px;
+            }
+        }
+
+        /* Prevent horizontal scrolling */
+        html,
+        body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="kyrene-transfer-widget">
+        <div class="ky-container">
+            <header class="ky-header">
+                <div class="ky-header-content">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAXVBMVEXxWiPxWiLxWSLxWSLqVRnxWiLwVh5HcEzxWiL2Sh/xWSL3WB/rUxr6UxHxWSPxWSLxWiLxWiL3VBjyWCDxWSLxWSLxWiLxWSL4WBfyWCPxWiLxWiLxWSLxWSLxWiMFaX8VAAAAHnRSTlP+7uX1DPs4AP0CeCMrBVKP2KsUXMebsrsbRuDPbWYcRWRWAAABzUlEQVQ4y43V2barIAwG4B+ZEhBna6Vt3v8xz4WdPEXX9krX+gwmJAj/xwu7p3pk7+vQBsdn0ISq4RQUEenWHEM32Rx51AQBbDiCQ6uJboOZCCIC6q5FyOZGABYTK4iICGnn2ZUijoqAycRMG1TOD/1QgBwsKEezPJe+DbyqppSM6Qn2wasiAKQfPs22TwXIdUXURR47C5vviVdFypXKw60FpjpdxzBGZtcRaE6lgtcVgXKIiTld7xkAcizBdCEBbO7btu8sAdChGJHvFiIAWQIggJ1NuSmc2qotIgLsN3wHr90LgshOTTpqM3PDM5rNfTMc92NantDer+m0cS/bRosN7P8EsaRTyM+lBVV9Cs30gvTgMzh0b7iYM1hXLwjtzuCqPwWf+QQG+uzg/+nsmqL/QKGWD+G21QAgAqj9aYGfT4TqCCKgizmA3G6gbzSJiOg7l+HQkYjAjuZCEAGq78W/YKMhAsqRXbXN9lTHtf6BaYtDM3sOdksrZ/34gdscQK/e82vxr6n5HCkzEQQ0Ge+9j7ct/DL8fmM9KwLsuL3mMgF0i6Vkklvs+1jkRtEu7X0/PrJ+HWDcKD3y0Shw7Nv3fRMOx9V77/ng9/EPE0I9sCXmQ1EAAAAASUVORK5CYII=" alt="Kyrene School District Logo" class="ky-logo">
+                    <h1 class="h1">Find your Kyrene School</h1>
+                </div>
+                <p class="subtitle">Check enrollment plans for the 2026-27 and 2027-28 school years</p>
+            </header>
+        
+            <div class="notice">
+                ⚠️ This tool is for currently enrolled kyrene students only<br>
+                New to Kyrene? <a href="https://www.kyrene.org/about-kyrene/enrollmentregistration" target="_blank">Learn how to enroll</a>
+            </div>
+            <div class="ky-form-section">
+                <h2>Student Information (2025 - 2026)</h2>
+                <form id="schoolForm">
+                    <div class="ky-form-group">
+                        <label for="currentSchool" class="ky-label">What school does your child currently
+                            attend?</label>
+                        <select id="currentSchool" name="currentSchool" required>
+                            <option value="">Select a school</option>
+                            <optgroup label="Elementary Schools">
+                                <option value="Brisas">Brisas</option>
+                                <option value="Cerritos">Cerritos</option>
+                                <option value="Cielo">Cielo</option>
+                                <option value="Colina">Colina</option>
+                                <option value="Esperanza">Esperanza</option>
+                                <option value="Estrella">Estrella</option>
+                                <option value="Kyrene Traditional Academy">Kyrene Traditional Academy</option>
+                                <option value="Lagos">Lagos</option>
+                                <option value="Lomas">Lomas</option>
+                                <option value="Manitas">Manitas</option>
+                                <option value="Mariposa">Mariposa</option>
+                                <option value="Milenio">Milenio</option>
+                                <option value="Mirada">Mirada</option>
+                                <option value="Monte Vista">Monte Vista</option>
+                                <option value="Ninos">Ninos</option>
+                                <option value="Norte">Norte</option>
+                                <option value="Paloma">Paloma</option>
+                                <option value="Sierra">Sierra</option>
+                                <option value="Waggoner">Waggoner</option>
+                            </optgroup>
+                            <optgroup label="Middle Schools">
+                                <option value="Akimel A-al MS">Akimel A-al Middle School</option>
+                                <option value="Altadena MS">Altadena Middle School</option>
+                                <option value="Centennial MS">Centennial Middle School</option>
+                                <option value="Aprende MS">Aprende Middle School</option>
+                                <option value="Pueblo MS">Pueblo Middle School</option>
+                                <option value="Kyrene MS">Kyrene Middle School</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- Grade -->
+                    <div class="ky-form-group">
+                        <label class="ky-label">What grade is your child in now?</label>
+                        <div id="gradeOptions">
+                            <select id="currentGrade" name="currentGrade" required>
+                                <option value="">Select grade</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--DL Akimel -->
+                    <div class="ky-form-group ky-special-group" id="dualLanguageGroup">
+                        <label class="ky-label">Does your child participate in the Dual Language program? (Select "No"
+                            if you currently participate but do not plan on continuing)</label>
+                        <div class="ky-radio-group">
+                            <div class="ky-radio-option">
+                                <input type="radio" id="dualYes" name="dualLanguage" value="YES">
+                                <label for="dualYes">Yes</label>
+                            </div>
+                            <div class="ky-radio-option">
+                                <input type="radio" id="dualNo" name="dualLanguage" value="NO">
+                                <label for="dualNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Enrollment Status-->
+                    <div class="ky-form-group" id="standardEnrollmentGroup">
+                        <label class="ky-label" id="enrollmentLabel">What is your child's enrollment status?</label>
+                        <div class="ky-radio-group">
+                            <div class="ky-radio-option">
+                                <input type="radio" id="residentHome" name="enrollment" value="Resident (Home)">
+                                <label for="residentHome">Resident (Home)</label>
+                            </div>
+                            <div class="ky-radio-option">
+                                <input type="radio" id="openEnrollment" name="enrollment" value="Open Enrollment">
+                                <label for="openEnrollment">Open Enrollment</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Estrella-->
+                    <div class="ky-form-group ky-special-group" id="estrellaEnrollmentGroup">
+                        <label class="ky-label">What is your child's enrollment status?</label>
+                        <div class="ky-radio-group">
+                            <div class="ky-radio-option">
+                                <input type="radio" id="estrellaWest" name="enrollment"
+                                    value="Resident (West of 32nd Street)">
+                                <label for="estrellaWest">Resident (West of 32nd Street)</label>
+                            </div>
+                            <div class="ky-radio-option">
+                                <input type="radio" id="estrellaEast" name="enrollment"
+                                    value="Resident (East of 32nd Street)">
+                                <label for="estrellaEast">Resident (East of 32nd Street)</label>
+                            </div>
+                            <div class="ky-radio-option">
+                                <input type="radio" id="estrellaOpen" name="enrollment" value="Open Enrollment">
+                                <label for="estrellaOpen">Open Enrollment</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Mariposa-->
+                    <div class="ky-form-group ky-special-group" id="mariposaEnrollmentGroup">
+                        <label class="ky-label">What is your child's enrollment status?</label>
+                        <div class="ky-radio-group">
+                            <div class="ky-radio-option">
+                                <input type="radio" id="mariposaNorth" name="enrollment"
+                                    value="Resident (North of Warner Rd)">
+                                <label for="mariposaNorth">Resident (North of Warner Rd)</label>
+                            </div>
+                            <div class="ky-radio-option">
+                                <input type="radio" id="mariposaSouth" name="enrollment"
+                                    value="Resident (South of Warner Rd)">
+                                <label for="mariposaSouth">Resident (South of Warner Rd)</label>
+                            </div>
+                            <div class="ky-radio-option">
+                                <input type="radio" id="mariposaOpen" name="enrollment" value="Open Enrollment">
+                                <label for="mariposaOpen">Open Enrollment</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Pueblo-->
+                    <div class="ky-form-group ky-special-group" id="puebloEnrollmentGroup">
+                        <label class="ky-label">What is your child's enrollment status?</label>
+                        <div class="ky-radio-group">
+                            <div class="ky-radio-option">
+                                <input type="radio" id="puebloNorth" name="enrollment"
+                                    value="Resident (North of Warner Rd)">
+                                <label for="puebloNorth">Resident (North of Warner Rd)</label>
+                            </div>
+                            <div class="ky-radio-option">
+                                <input type="radio" id="puebloSouth" name="enrollment"
+                                    value="Resident (South of Warner Rd)">
+                                <label for="puebloSouth">Resident (South of Warner Rd)</label>
+                            </div>
+                            <div class="ky-radio-option">
+                                <input type="radio" id="puebloOpen" name="enrollment" value="Open Enrollment">
+                                <label for="puebloOpen">Open Enrollment</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Akimel-->
+                    <div class="ky-form-group ky-special-group" id="akimelEnrollmentGroup">
+                        <label class="ky-label">What is your child's enrollment status?</label>
+                        <div class="ky-radio-group">
+                            <div class="ky-radio-option">
+                                <input type="radio" id="akimelWest" name="enrollment"
+                                    value="Resident (West of 32nd Street)">
+                                <label for="akimelWest">Resident (West of 32nd Street)</label>
+                            </div>
+                            <div class="ky-radio-option">
+                                <input type="radio" id="akimelEast" name="enrollment"
+                                    value="Resident (East of 32nd Street)">
+                                <label for="akimelEast">Resident (East of 32nd Street)</label>
+                            </div>
+                            <div class="ky-radio-option">
+                                <input type="radio" id="akimelOpen" name="enrollment" value="Open Enrollment">
+                                <label for="akimelOpen">Open Enrollment</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Preschool-->
+                    <div class="ky-info-message" id="preschoolMessage">
+                    </div>
+
+                    <!--CCD-->
+                    <div class="ky-info-message" id="ccdMessage">
+                    </div>
+
+                    <!--CCD-->
+                    <div class="ky-form-group" id="ccdGroup">
+                        <label class="ky-label" id="ccdLabel">Does your child attend a CCD, CCDS, CCB, or CCBS
+                            program?</label>
+                        <div class="ky-radio-group">
+                            <div class="ky-radio-option">
+                                <input type="radio" id="ccdYes" name="ccdProgram" value="Yes"
+                                    onclick="handleCCDChange()">
+                                <label for="ccdYes">Yes</label>
+                            </div>
+                            <div class="ky-radio-option">
+                                <input type="radio" id="ccdNo" name="ccdProgram" value="No" onclick="handleCCDChange()">
+                                <label for="ccdNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="ky-btn" onclick="calculateSchool()">FIND SCHOOL</button>
+                </form>
+            </div>
+
+            <div class="ky-result-section" id="resultSection">
+                <div class="ky-result-box">
+                    <div class="ky-result-title">2025-26 Information Provided</div>
+                    <div class="ky-result-details" id="studentInfo">
+                    </div>
+                    <div class="ky-result-title">Enrollment Plan</div>
+
+                    <div class="ky-transfer-container" id="schoolResults">
+                    </div>
+
+                    <div class="ky-tuhsd-section" id="tuhsdSection">
+                        <div class="ky-tuhsd-title">High School Enrollment Information</div>
+                        <p>Visit the Tempe Union High School District (TUHSD) page for enrollment information.</p>
+                        <a href="https://www.tempeunion.org/enrollment" target="_blank" class="ky-tuhsd-link">TUHSD
+                            Enrollment Page</a>
+                    </div>
+                    <div id="additionalInfo"></div>
+                    <button class="ky-btn ky-btn-secondary" onclick="resetForm()">Check Another Student</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const schoolData = {
+            "Brisas": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Brisas", "2027": "Brisas", "feeding": "Aprende MS" },
+                    "Open Enrollment": { "2026": "Brisas", "2027": "Brisas", "feeding": "Aprende MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Brisas", "2027": "Aprende MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Brisas", "2027": "Aprende MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Aprende MS", "2027": "Aprende MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Aprende MS", "2027": "Aprende MS", "feeding": "" }
+                }
+            },
+            "Cerritos": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Cerritos", "2027": "Cerritos", "feeding": "Altadena MS" },
+                    "Open Enrollment": { "2026": "Cerritos", "2027": "Cerritos", "feeding": "Altadena MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Cerritos", "2027": "Altadena MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Cerritos", "2027": "Altadena MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Altadena MS", "2027": "Altadena MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Altadena MS", "2027": "Altadena MS", "feeding": "" }
+                }
+            },
+            "Cielo": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Cielo", "2027": "Cielo", "feeding": "Aprende MS" },
+                    "Open Enrollment": { "2026": "Cielo", "2027": "Cielo", "feeding": "Aprende MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Cielo", "2027": "Aprende MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Cielo", "2027": "Aprende MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Aprende MS", "2027": "Aprende MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Aprende MS", "2027": "Aprende MS", "feeding": "" }
+                }
+            },
+            "Colina": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Esperanza", "2027": "Esperanza", "feeding": "Centennial MS" },
+                    "Open Enrollment": { "2026": "Esperanza", "2027": "Esperanza", "feeding": "Centennial MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Esperanza", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Esperanza", "2027": "Centennial MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Centennial MS", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Centennial MS", "2027": "Centennial MS", "feeding": "" }
+                }
+            },
+            "Esperanza": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Esperanza", "2027": "Esperanza", "feeding": "Centennial MS" },
+                    "Open Enrollment": { "2026": "Esperanza", "2027": "Esperanza", "feeding": "Centennial MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Esperanza", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Esperanza", "2027": "Centennial MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Centennial MS", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Centennial MS", "2027": "Centennial MS", "feeding": "" }
+                }
+            },
+            "Estrella": {
+                "PS": {
+                    "Resident (West of 32nd Street)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Resident (East of 32nd Street)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (West of 32nd Street)": { "2026": "Sierra", "2027": "Sierra", "feeding": "Altadena MS" },
+                    "Resident (East of 32nd Street)": { "2026": "Milenio", "2027": "Milenio", "feeding": "Centennial MS" },
+                    "Open Enrollment": { "2026": "Milenio", "2027": "Milenio", "feeding": "Centennial MS" }
+                },
+                "4": {
+                    "Resident (West of 32nd Street)": { "2026": "Sierra", "2027": "Altadena MS", "feeding": "" },
+                    "Resident (East of 32nd Street)": { "2026": "Milenio", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Milenio", "2027": "Centennial MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (West of 32nd Street)": { "2026": "Akimel A-al MS", "2027": "Altadena MS", "feeding": "" },
+                    "Resident (East of 32nd Street)": { "2026": "Akimel A-al MS", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Akimel A-al MS", "2027": "Centennial MS", "feeding": "" }
+                }
+            },
+            "Kyrene Traditional Academy": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Kyrene Traditional Academy", "2027": "Paloma", "feeding": "Aprende MS" },
+                    "Open Enrollment": { "2026": "Kyrene Traditional Academy", "2027": "Paloma", "feeding": "Aprende MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Kyrene Traditional Academy", "2027": "Aprende MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene Traditional Academy", "2027": "Aprende MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Kyrene Traditional Academy", "2027": "Aprende MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene Traditional Academy", "2027": "Aprende MS", "feeding": "" }
+                },
+                "6": {
+                    "Resident (Home)": { "2026": "Kyrene Traditional Academy", "2027": "Aprende MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene Traditional Academy", "2027": "Aprende MS", "feeding": "" }
+                },
+                "7": {
+                    "Resident (Home)": { "2026": "Kyrene Traditional Academy", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene Traditional Academy", "2027": "Tempe Union High School District", "feeding": "" }
+                },
+                "8": {
+                    "Resident (Home)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" }
+                }
+            },
+            "Lagos": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Lagos", "2027": "Lagos", "feeding": "Centennial MS" },
+                    "Open Enrollment": { "2026": "Lagos", "2027": "Lagos", "feeding": "Centennial MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Lagos", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Lagos", "2027": "Centennial MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Akimel A-al MS", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Akimel A-al MS", "2027": "Centennial MS", "feeding": "" }
+                }
+            },
+            "Lomas": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Lomas", "2027": "Lomas", "feeding": "Centennial MS" },
+                    "Open Enrollment": { "2026": "Lomas", "2027": "Lomas", "feeding": "Centennial MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Lomas", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Lomas", "2027": "Centennial MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Centennial MS", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Centennial MS", "2027": "Centennial MS", "feeding": "" }
+                }
+            },
+            "Manitas": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Mirada", "2027": "Mirada", "feeding": "Kyrene MS" },
+                    "Open Enrollment": { "2026": "Mirada", "2027": "Mirada", "feeding": "Kyrene MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Mirada", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Mirada", "2027": "Kyrene MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" }
+                },
+                "6": {
+                    "Resident (Home)": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" }
+                },
+                "7": {
+                    "Resident (Home)": { "2026": "Kyrene MS", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene MS", "2027": "Tempe Union High School District", "feeding": "" }
+                },
+                "8": {
+                    "Resident (Home)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" }
+                }
+            },
+            "Mariposa": {
+                "PS": {
+                    "Resident (North of Warner Rd)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Resident (South of Warner Rd)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (North of Warner Rd)": { "2026": "Mariposa", "2027": "Mariposa", "feeding": "Kyrene MS" },
+                    "Resident (South of Warner Rd)": { "2026": "Mariposa", "2027": "Mariposa", "feeding": "Kyrene MS" },
+                    "Open Enrollment": { "2026": "Mariposa", "2027": "Mariposa", "feeding": "Kyrene MS" }
+                },
+                "4": {
+                    "Resident (North of Warner Rd)": { "2026": "Mariposa", "2027": "Kyrene MS", "feeding": "" },
+                    "Resident (South of Warner Rd)": { "2026": "Mariposa", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Mariposa", "2027": "Kyrene MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (North of Warner Rd)": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" },
+                    "Resident (South of Warner Rd)": { "2026": "Pueblo MS", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" }
+                }
+            },
+            "Milenio": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Milenio", "2027": "Milenio", "feeding": "Centennial MS" },
+                    "Open Enrollment": { "2026": "Milenio", "2027": "Milenio", "feeding": "Centennial MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Milenio", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Milenio", "2027": "Centennial MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Akimel A-al MS", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Akimel A-al MS", "2027": "Centennial MS", "feeding": "" }
+                }
+            },
+            "Mirada": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Mirada", "2027": "Mirada", "feeding": "Kyrene MS" },
+                    "Open Enrollment": { "2026": "Mirada", "2027": "Mirada", "feeding": "Kyrene MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Mirada", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Mirada", "2027": "Kyrene MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Pueblo MS", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pueblo MS", "2027": "Kyrene MS", "feeding": "" }
+                }
+            },
+            "Monte Vista": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Monte Vista", "2027": "Monte Vista", "feeding": "Altadena MS" },
+                    "Open Enrollment": { "2026": "Monte Vista", "2027": "Monte Vista", "feeding": "Altadena MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Monte Vista", "2027": "Altadena MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Monte Vista", "2027": "Altadena MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Altadena MS", "2027": "Altadena MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Altadena MS", "2027": "Altadena MS", "feeding": "" }
+                }
+            },
+            "Ninos": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Ninos", "2027": "Ninos", "feeding": "Kyrene MS" },
+                    "Open Enrollment": { "2026": "Ninos", "2027": "Ninos", "feeding": "Kyrene MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Ninos", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Ninos", "2027": "Kyrene MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" }
+                }
+            },
+            "Norte": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Norte", "2027": "Norte", "feeding": "Kyrene MS" },
+                    "Open Enrollment": { "2026": "Norte", "2027": "Norte", "feeding": "Kyrene MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Norte", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Norte", "2027": "Kyrene MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" }
+                }
+            },
+            "Paloma": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Paloma", "2027": "Paloma", "feeding": "Aprende MS" },
+                    "Open Enrollment": { "2026": "Paloma", "2027": "Paloma", "feeding": "Aprende MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Paloma", "2027": "Aprende MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Paloma", "2027": "Aprende MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Pueblo MS", "2027": "Aprende MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pueblo MS", "2027": "Aprende MS", "feeding": "" }
+                }
+            },
+            "Sierra": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Sierra", "2027": "Sierra", "feeding": "Altadena MS" },
+                    "Open Enrollment": { "2026": "Sierra", "2027": "Sierra", "feeding": "Altadena MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Sierra", "2027": "Altadena MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Sierra", "2027": "Altadena MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Altadena MS", "2027": "Altadena MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Altadena MS", "2027": "Altadena MS", "feeding": "" }
+                }
+            },
+            "Waggoner": {
+                "PS": {
+                    "Resident (Home)": { "2026": "Pre school Message", "2027": "", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pre school Message", "2027": "", "feeding": "" }
+                },
+                "K-3": {
+                    "Resident (Home)": { "2026": "Waggoner", "2027": "Waggoner", "feeding": "Kyrene MS" },
+                    "Open Enrollment": { "2026": "Waggoner", "2027": "Waggoner", "feeding": "Kyrene MS" }
+                },
+                "4": {
+                    "Resident (Home)": { "2026": "Waggoner", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Waggoner", "2027": "Kyrene MS", "feeding": "" }
+                },
+                "5": {
+                    "Resident (Home)": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" }
+                }
+            },
+            "Pueblo MS": {
+                "6": {
+                    "Resident (North of Warner Rd)": { "2026": "Pueblo MS", "2027": "Kyrene MS", "feeding": "" },
+                    "Resident (South of Warner Rd)": { "2026": "Pueblo MS", "2027": "Aprende MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pueblo MS", "2027": "Aprende MS", "feeding": "" }
+                },
+                "7": {
+                    "Resident (North of Warner Rd)": { "2026": "Pueblo MS", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Resident (South of Warner Rd)": { "2026": "Pueblo MS", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Pueblo MS", "2027": "Tempe Union High School District", "feeding": "" }
+                },
+                "8": {
+                    "Resident (North of Warner Rd)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Resident (South of Warner Rd)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" }
+                }
+            },
+            "Altadena MS": {
+                "6": {
+                    "Resident (Home)": { "2026": "Altadena MS", "2027": "Altadena MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Altadena MS", "2027": "Altadena MS", "feeding": "" }
+                },
+                "7": {
+                    "Resident (Home)": { "2026": "Altadena MS", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Altadena MS", "2027": "Tempe Union High School District", "feeding": "" }
+                },
+                "8": {
+                    "Resident (Home)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" }
+                }
+            },
+            "Centennial MS": {
+                "6": {
+                    "Resident (Home)": { "2026": "Centennial MS", "2027": "Centennial MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Centennial MS", "2027": "Centennial MS", "feeding": "" }
+                },
+                "7": {
+                    "Resident (Home)": { "2026": "Centennial MS", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Centennial MS", "2027": "Tempe Union High School District", "feeding": "" }
+                },
+                "8": {
+                    "Resident (Home)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" }
+                }
+            },
+            "Aprende MS": {
+                "6": {
+                    "Resident (Home)": { "2026": "Aprende MS", "2027": "Aprende MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Aprende MS", "2027": "Aprende MS", "feeding": "" }
+                },
+                "7": {
+                    "Resident (Home)": { "2026": "Aprende MS", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Aprende MS", "2027": "Tempe Union High School District", "feeding": "" }
+                },
+                "8": {
+                    "Resident (Home)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" }
+                }
+            },
+            "Kyrene MS": {
+                "6": {
+                    "Resident (Home)": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene MS", "2027": "Kyrene MS", "feeding": "" }
+                },
+                "7": {
+                    "Resident (Home)": { "2026": "Kyrene MS", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Kyrene MS", "2027": "Tempe Union High School District", "feeding": "" }
+                },
+                "8": {
+                    "Resident (Home)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" }
+                }
+            },
+            "Akimel A-al MS": {
+                "6": {
+                    "YES": { "2026": "Akimel A-al MS", "2027": "Centennial MS", "feeding": "" },
+                    "NO": {
+                        "Resident (West of 32nd Street)": { "2026": "Akimel A-al MS", "2027": "Altadena MS", "feeding": "" },
+                        "Resident (East of 32nd Street)": { "2026": "Akimel A-al MS", "2027": "Centennial MS", "feeding": "" },
+                        "Open Enrollment": { "2026": "Akimel A-al MS", "2027": "Centennial MS", "feeding": "" }
+                    }
+                },
+                "7": {
+                    "Resident (Home)": { "2026": "Akimel A-al MS", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Akimel A-al MS", "2027": "Tempe Union High School District", "feeding": "" }
+                },
+                "8": {
+                    "Resident (Home)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Open Enrollment": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" }
+                }
+            }
+        };
+
+        const schoolGrades = {
+            "Brisas": ["PS", "K-3", "4", "5"],
+            "Cerritos": ["PS", "K-3", "4", "5"],
+            "Cielo": ["PS", "K-3", "4", "5"],
+            "Colina": ["PS", "K-3", "4", "5"],
+            "Esperanza": ["PS", "K-3", "4", "5"],
+            "Estrella": ["PS", "K-3", "4", "5"],
+            "Kyrene Traditional Academy": ["PS", "K-3", "4", "5", "6", "7", "8"],
+            "Lagos": ["PS", "K-3", "4", "5"],
+            "Lomas": ["PS", "K-3", "4", "5"],
+            "Manitas": ["PS", "K-3", "4", "5", "6", "7", "8"],
+            "Mariposa": ["PS", "K-3", "4", "5"],
+            "Milenio": ["PS", "K-3", "4", "5"],
+            "Mirada": ["PS", "K-3", "4", "5"],
+            "Monte Vista": ["PS", "K-3", "4", "5"],
+            "Ninos": ["PS", "K-3", "4", "5"],
+            "Norte": ["PS", "K-3", "4", "5"],
+            "Paloma": ["PS", "K-3", "4", "5"],
+            "Sierra": ["PS", "K-3", "4", "5"],
+            "Waggoner": ["PS", "K-3", "4", "5"],
+            "Pueblo MS": ["6", "7", "8"],
+            "Altadena MS": ["6", "7", "8"],
+            "Centennial MS": ["6", "7", "8"],
+            "Aprende MS": ["6", "7", "8"],
+            "Kyrene MS": ["6", "7", "8"],
+            "Akimel A-al MS": ["6", "7", "8"]
+        };
+
+        const gradeNames = {
+            "PS": "Preschool",
+            "K-3": "Kindergarten through 3rd Grade",
+            "4": "4th Grade",
+            "5": "5th Grade",
+            "6": "6th Grade",
+            "7": "7th Grade",
+            "8": "8th Grade"
+        };
+
+        const schoolDisplayNames = {
+            "Brisas": "Brisas Elementary School",
+            "Cerritos": "Cerritos Elementary School",
+            "Cielo": "Cielo Elementary School",
+            "Colina": "Colina Elementary School",
+            "Esperanza": "Esperanza Elementary School",
+            "Estrella": "Estrella Elementary School",
+            "Kyrene Traditional Academy": "Kyrene Traditional Academy",
+            "Lagos": "Lagos Elementary School",
+            "Lomas": "Lomas Elementary School",
+            "Manitas": "Manitas Elementary School",
+            "Mariposa": "Mariposa Elementary School",
+            "Milenio": "Milenio Elementary School",
+            "Mirada": "Mirada Elementary School",
+            "Monte Vista": "Monte Vista Elementary School",
+            "Ninos": "Ninos Elementary School",
+            "Norte": "Norte Elementary School",
+            "Paloma": "Paloma Elementary School",
+            "Sierra": "Sierra Elementary School",
+            "Waggoner": "Waggoner Elementary School",
+            "Pueblo MS": "Pueblo Middle School",
+            "Altadena MS": "Altadena Middle School",
+            "Centennial MS": "Centennial Middle School",
+            "Aprende MS": "Aprende Middle School",
+            "Kyrene MS": "Kyrene Middle School",
+            "Akimel A-al MS": "Akimel A-al Middle School",
+            "Tempe Union High School District": "Tempe Union High School District"
+        };
+
+        // clear CCD 
+        function clearCCDRadioSelection() {
+            document.querySelectorAll('input[name="ccdProgram"]').forEach(radio => {
+                radio.checked = false;
+            });
+
+            // Hide CCD message
+            document.getElementById('ccdMessage').style.display = 'none';
+        }
+
+        // Function to clear CCD and Enrollment radio button selections
+        function clearCCDAndEnrollmentSelections() {
+            // Clear CCD Program radio buttons
+            document.querySelectorAll('input[name="ccdProgram"]').forEach(radio => {
+                radio.checked = false;
+            });
+
+            // Clear Enrollment Status radio buttons
+            document.querySelectorAll('input[name="enrollment"]').forEach(radio => {
+                radio.checked = false;
+            });
+
+            // Hide CCD message
+            document.getElementById('ccdMessage').style.display = 'none';
+        }
+        // Function to update grade options when school is selected
+        function updateGradeOptions() {
+            const school = document.getElementById('currentSchool').value;
+            const gradeSelect = document.getElementById('currentGrade');
+
+            // Clear CCD and Enrollment radio button selections when school changes
+            clearCCDAndEnrollmentSelections();
+
+            // Clear existing grade options
+            gradeSelect.innerHTML = '<option value="">Select grade</option>';
+
+            if (school && schoolGrades[school]) {
+                // Add grade options for selected school
+                schoolGrades[school].forEach(gradeValue => {
+                    const option = document.createElement('option');
+                    option.value = gradeValue;
+                    option.textContent = `${gradeValue} - ${gradeNames[gradeValue]}`;
+                    gradeSelect.appendChild(option);
+                });
+            }
+
+            // Update form visibility
+            updateFormVisibility();
+        }
+
+        // Function to update form visibility based on selections
+        function updateFormVisibility() {
+            const school = document.getElementById('currentSchool').value;
+            const grade = document.getElementById('currentGrade').value;
+
+            // Hide all special groups first
+            document.querySelectorAll('.ky-special-group').forEach(group => {
+                group.style.display = 'none';
+            });
+            document.getElementById('standardEnrollmentGroup').style.display = 'none';
+            document.getElementById('preschoolMessage').style.display = 'none';
+            document.getElementById('ccdMessage').style.display = 'none';
+
+            // Clear radio selections
+            document.querySelectorAll('input[name="dualLanguage"]').forEach(radio => {
+                radio.checked = false;
+            });
+
+            // Update CCD label number based on school
+            const ccdLabel = document.getElementById('ccdLabel');
+
+            // If PS is selected, show preschool message
+            if (grade === "PS") {
+                document.getElementById('preschoolMessage').style.display = 'block';
+            }
+
+            // Show appropriate enrollment group
+            if (school && grade) {
+                if (school === "Estrella") {
+                    document.getElementById('estrellaEnrollmentGroup').style.display = 'block';
+                    ccdLabel.textContent = "Does your child attend a CCD, CCDS, CCB, or CCBS program?";
+                } else if (school === "Mariposa") {
+                    // For Mariposa, only show special options for PS, K-3, 4, 5
+                    if (["PS", "K-3", "4", "5"].includes(grade)) {
+                        document.getElementById('mariposaEnrollmentGroup').style.display = 'block';
+                        ccdLabel.textContent = "Does your child attend a CCD, CCDS, CCB, or CCBS program?";
+                    } else {
+                        document.getElementById('standardEnrollmentGroup').style.display = 'block';
+                        ccdLabel.textContent = "Does your child attend a CCD, CCDS, CCB, or CCBS program?";
+                    }
+                } else if (school === "Pueblo MS") {
+                    document.getElementById('puebloEnrollmentGroup').style.display = 'block';
+                    ccdLabel.textContent = "Does your child attend a CCD, CCDS, CCB, or CCBS program?";
+                } else if (school === "Akimel A-al MS") {
+                    if (grade === "6") {
+                        document.getElementById('dualLanguageGroup').style.display = 'block';
+                        ccdLabel.textContent = "Does your child attend a CCD, CCDS, CCB, or CCBS program?";
+                    } else {
+                        // For grades 7 and 8, show standard enrollment (NO Dual Language question)
+                        document.getElementById('standardEnrollmentGroup').style.display = 'block';
+                        ccdLabel.textContent = "Does your child attend a CCD, CCDS, CCB, or CCBS program?";
+                    }
+                } else {
+                    document.getElementById('standardEnrollmentGroup').style.display = 'block';
+                    ccdLabel.textContent = "Does your child attend a CCD, CCDS, CCB, or CCBS program?";
+                }
+            }
+
+            // Handle CCD program change
+            handleCCDChange();
+        }
+
+        // Handle dual language selection for Akimel
+        function handleDualLanguageChange() {
+            const dualLanguage = document.querySelector('input[name="dualLanguage"]:checked')?.value;
+            const school = document.getElementById('currentSchool').value;
+            const grade = document.getElementById('currentGrade').value;
+
+            if (school === "Akimel A-al MS" && grade === "6") {
+                if (dualLanguage === "YES") {
+                    document.getElementById('akimelEnrollmentGroup').style.display = 'none';
+                    document.getElementById('ccdLabel').textContent = "Does your child attend a CCD, CCDS, CCB, or CCBS program?";
+                } else if (dualLanguage === "NO") {
+                    document.getElementById('akimelEnrollmentGroup').style.display = 'block';
+                    document.getElementById('ccdLabel').textContent = "Does your child attend a CCD, CCDS, CCB, or CCBS program?";
+                }
+            }
+        }
+
+        // Get selected enrollment value
+        function getEnrollmentValue() {
+            const school = document.getElementById('currentSchool').value;
+            const grade = document.getElementById('currentGrade').value;
+            const dualLanguage = document.querySelector('input[name="dualLanguage"]:checked')?.value;
+
+            if (school === "Akimel A-al MS" && grade === "6" && dualLanguage === "YES") {
+                return "NO Enrollment status Question";
+            }
+
+            if (school === "Estrella") {
+                return document.querySelector('input[name="enrollment"]:checked')?.value;
+            } else if (school === "Mariposa" && ["PS", "K-3", "4", "5"].includes(grade)) {
+                return document.querySelector('input[name="enrollment"]:checked')?.value;
+            } else if (school === "Pueblo MS") {
+                return document.querySelector('input[name="enrollment"]:checked')?.value;
+            } else if (school === "Akimel A-al MS" && grade === "6" && dualLanguage === "NO") {
+                return document.querySelector('input[name="enrollment"]:checked')?.value;
+            } else {
+                return document.querySelector('input[name="enrollment"]:checked')?.value;
+            }
+        }
+
+        // Main calculation function - CORRECTED LOGIC FOR 7TH GRADE
+        function calculateSchool() {
+            const school = document.getElementById('currentSchool').value;
+            const grade = document.getElementById('currentGrade').value;
+            const dualLanguage = document.querySelector('input[name="dualLanguage"]:checked')?.value;
+            const enrollment = getEnrollmentValue();
+            const ccdProgram = document.querySelector('input[name="ccdProgram"]:checked')?.value;
+
+            // Validate inputs
+            if (!school || !grade) {
+                alert("Select a school and grade.");
+                return;
+            }
+
+            if (!enrollment) {
+                alert("Select an enrollment status.");
+                return;
+            }
+
+            if (!ccdProgram) {
+                alert("Answer the CCD/CCDS/CCB/CCBS program question.");
+                return;
+            }
+
+            if (school === "Akimel A-al MS" && grade === "6" && !dualLanguage) {
+                alert("Select Dual Language participation.");
+                return;
+            }
+
+            // Check for CCD program first
+            if (ccdProgram === "Yes" && grade !== "PS") {
+                showCCDResult(school, grade, enrollment);
+                return;
+            }
+
+            // Check for preschool
+            if (grade === "PS") {
+                showPreschoolResult(school, enrollment);
+                return;
+            }
+
+            // Get school data
+            let result = null;
+
+            if (school === "Akimel A-al MS" && grade === "6") {
+                if (dualLanguage === "YES") {
+                    result = schoolData[school][grade][dualLanguage];
+                } else {
+                    result = schoolData[school][grade][dualLanguage][enrollment];
+                }
+            } else {
+                result = schoolData[school][grade][enrollment];
+            }
+
+            if (!result) {
+                alert("No transition information found for these selections. Check your inputs.");
+                console.log("Debug - No result for:", school, grade, enrollment, dualLanguage);
+                return;
+            }
+
+            // Display student information
+            const displaySchool = schoolDisplayNames[school] || school;
+            const displayGrade = gradeNames[grade] || grade;
+
+            let studentInfoHTML = `
+                <p><strong>Current School:</strong> ${displaySchool}</p>
+                <p><strong>Current Grade:</strong> ${displayGrade}</p>
+            `;
+
+            if (school === "Akimel A-al MS" && grade === "6") {
+                studentInfoHTML += `<p><strong>Dual Language:</strong> ${dualLanguage}</p>`;
+            }
+
+            studentInfoHTML += `<p><strong>Enrollment Status:</strong> ${enrollment}</p>`;
+
+            document.getElementById('studentInfo').innerHTML = studentInfoHTML;
+
+            // Handle high school
+            if (grade === "8") {
+                // For 8th grade, always show Tempe Union High School for both years
+                document.getElementById('schoolResults').innerHTML = `
+                    <div class="ky-transfer-box ky-year-2026">
+                        <div class="ky-year-title">2026-27 School Year</div>
+                        <div class="ky-transfer-school">Tempe Union High School District</div>
+                    </div>
+                    <div class="ky-transfer-box ky-year-2027">
+                        <div class="ky-year-title">2027-28 School Year</div>
+                        <div class="ky-transfer-school">Tempe Union High School District</div>
+                    </div>
+                `;
+                document.getElementById('tuhsdSection').style.display = 'block';
+            }
+            else if (result["2027"] === "Tempe Union High School District") {
+                // For 7th grade (and some 6th/7th), show current school for 2026, TUHS for 2027
+                const school2026 = schoolDisplayNames[result["2026"]] || result["2026"];
+                const school2027 = schoolDisplayNames[result["2027"]] || result["2027"];
+
+                document.getElementById('schoolResults').innerHTML = `
+                    <div class="ky-transfer-box ky-year-2026">
+                        <div class="ky-year-title">2026-27 School Year</div>
+                        <div class="ky-transfer-school">${school2026}</div>
+                    </div>
+                    <div class="ky-transfer-box ky-year-2027">
+                        <div class="ky-year-title">2027-28 School Year</div>
+                        <div class="ky-transfer-school">${school2027}</div>
+                    </div>
+                `;
+                document.getElementById('tuhsdSection').style.display = 'block';
+            }
+            // Regular transition
+            else {
+                const school2026 = schoolDisplayNames[result["2026"]] || result["2026"];
+                const school2027 = schoolDisplayNames[result["2027"]] || result["2027"];
+
+                let feedingHTML = '';
+                if (result.feeding && grade === "K-3") {
+                    feedingHTML = `<div class="ky-feeding-info">Feeds to ${schoolDisplayNames[result.feeding] || result.feeding}</div>`;
+                }
+
+                document.getElementById('schoolResults').innerHTML = `
+                    <div class="ky-transfer-box ky-year-2026">
+                        <div class="ky-year-title">2026-27 School Year</div>
+                        <div class="ky-transfer-school">${school2026}</div>
+                    </div>
+                    <div class="ky-transfer-box ky-year-2027">
+                        <div class="ky-year-title">2027-28 School Year</div>
+                        <div class="ky-transfer-school">${school2027}</div>
+                        ${feedingHTML}
+                    </div>
+                `;
+                document.getElementById('tuhsdSection').style.display = 'none';
+            }
+
+            // Add additional info
+            document.getElementById('additionalInfo').innerHTML = `
+                <div style="margin-top: 25px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; font-size: 14px;">
+                    <p style="font-size: 20px; text-align: center;"><strong>If you would like to explore alternate enrollment opportunities, <br>learn more at <a href="https://www.kyrene.org/enroll">www.kyrene.org/enroll</a></strong></p>
+                    <br><p>This tool is for informational purposes only based on information provided above. It is not confirmation of enrollment. Transportation and orientation details will be provided separately. Open enrollment eligibility is evaluated on an annual basis as per Kyrene Board Policy 5-105.</p>
+                </div>
+            `;
+
+            // Show results
+            document.getElementById('resultSection').style.display = 'block';
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Show preschool result
+        function showPreschoolResult(school, enrollment) {
+            const displaySchool = schoolDisplayNames[school] || school;
+
+            document.getElementById('studentInfo').innerHTML = `
+                <p><strong>Current School:</strong> ${displaySchool}</p>
+                <p><strong>Current Grade:</strong> Preschool</p>
+                <p><strong>Enrollment Status:</strong> ${enrollment}</p>
+            `;
+
+            document.getElementById('schoolResults').innerHTML = `
+                <div class="ky-transfer-box ky-year-2026" style="width: 100%;">
+                    <div class="ky-year-title">Important Information for Preschool Students</div>
+                    <div class="ky-transfer-school" style="font-size: 18px;">All kindergarten students must enroll when registration opens in February.</div>
+                </div>
+            `;
+
+            document.getElementById('tuhsdSection').style.display = 'none';
+            document.getElementById('resultSection').style.display = 'block';
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Show CCD result
+        function showCCDResult(school, grade, enrollment) {
+            const displaySchool = schoolDisplayNames[school] || school;
+            const displayGrade = gradeNames[grade] || grade;
+
+            document.getElementById('studentInfo').innerHTML = `
+                <p><strong>Current School:</strong> ${displaySchool}</p>
+                <p><strong>Current Grade:</strong> ${displayGrade}</p>
+                <p><strong>Enrollment Status:</strong> ${enrollment}</p>
+            `;
+
+            document.getElementById('schoolResults').innerHTML = `
+                <div class="ky-transfer-box ky-year-2026" style="width: 100%;">
+                    <div class="ky-transfer-school" style="font-size: 16px;">
+                        The Exceptional Student Services (ESS) Department will communicate about placement for students in CCD, CCDS, CCB, or CCBS programs in January.
+                        <br></br>
+                        <br>For more details, please contact us at ess@kyrene.org or call (480) 541-1157.</br>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('tuhsdSection').style.display = 'none';
+            document.getElementById('resultSection').style.display = 'block';
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // CCD program change handler
+        function handleCCDChange() {
+            const ccdProgram = document.querySelector('input[name="ccdProgram"]:checked')?.value;
+            const grade = document.getElementById('currentGrade').value;
+
+            if (ccdProgram === "Yes" && grade !== "PS") {
+                document.getElementById('ccdMessage').style.display = 'block';
+            } else {
+                document.getElementById('ccdMessage').style.display = 'none';
+            }
+        }
+
+        // Reset form
+        function resetForm() {
+            document.getElementById('schoolForm').reset();
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('preschoolMessage').style.display = 'none';
+            document.getElementById('ccdMessage').style.display = 'none';
+
+            // Clear CCD and Enrollment radio button selections
+            clearCCDAndEnrollmentSelections();
+
+            // Also clear Dual Language radio buttons
+            document.querySelectorAll('input[name="dualLanguage"]').forEach(radio => {
+                radio.checked = false;
+            });
+
+            // Hide all special groups
+            document.querySelectorAll('.ky-special-group').forEach(group => {
+                group.style.display = 'none';
+            });
+            document.getElementById('standardEnrollmentGroup').style.display = 'none';
+
+            // Reset CCD label
+            document.getElementById('ccdLabel').textContent = "My child attends a CCD, CCDS, CCB, or CCBS program:";
+
+            // Reset grade options
+            const gradeSelect = document.getElementById('currentGrade');
+            gradeSelect.innerHTML = '<option value="">Select grade</option>';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set up event listeners
+            document.getElementById('currentSchool').addEventListener('change', updateGradeOptions);
+            document.getElementById('currentGrade').addEventListener('change', function () {
+                // Clear CCD and Enrollment radio buttons when grade changes
+                clearCCDAndEnrollmentSelections();
+                updateFormVisibility();
+            });
+
+            // Dual language change listener
+            document.querySelectorAll('input[name="dualLanguage"]').forEach(radio => {
+                radio.addEventListener('change', handleDualLanguageChange);
+            });
+
+            // CCD program change listener
+            document.querySelectorAll('input[name="ccdProgram"]').forEach(radio => {
+                radio.addEventListener('change', handleCCDChange);
+            });
+        });
+    </script>
+</body>
+
+</html>
