@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kyrene School Transition Tool</title>
     <style>
-        /* Blue background for the entire page */
         body {
             background-color: #284b96;
             margin: 0;
@@ -14,7 +13,6 @@
             min-height: 100vh;
         }
 
-        /* Make the widget stand out with white background */
         #kyrene-transfer-widget {
             display: block;
             box-sizing: border-box;
@@ -34,7 +32,6 @@
             font-family: inherit;
         }
 
-        /* Remove the old .ky-container styles since we're using widget as container */
         #kyrene-transfer-widget .ky-container {
             max-width: 1100px;
             margin: 0 auto;
@@ -59,6 +56,7 @@
             position: relative;
             z-index: 1;
         }
+
         #kyrene-transfer-widget .subtitle{
             font-size: 9px;
             font-weight: bold;
@@ -120,52 +118,51 @@
         }
 
         @media (min-width: 768px) {
-        #kyrene-transfer-widget .ky-header {
-            padding: 30px 25px;
-        }
+            #kyrene-transfer-widget .ky-header {
+                padding: 30px 25px;
+            }
     
-        #kyrene-transfer-widget .ky-header-content {
-            flex-direction: row;
-            align-items: center;
-            gap: 20px;
-        }
+            #kyrene-transfer-widget .ky-header-content {
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+            }
         
-        #kyrene-transfer-widget .ky-logo {
-            height: 60px;
-        }
+            #kyrene-transfer-widget .ky-logo {
+                height: 60px;
+            }
+            
+            #kyrene-transfer-widget .h1 {
+                font-size: 32px;
+                text-align: left;
+                margin-bottom: 5px;
+            }
         
-        #kyrene-transfer-widget .h1 {
-            font-size: 32px;
-            text-align: left;
-            margin-bottom: 5px;
-        }
+            #kyrene-transfer-widget .subtitle {
+                font-size: 20px;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            #kyrene-transfer-widget .notice {
+                background-color: #dadada;
+                color: #000755;
+                padding: 10px;
+                margin: 0;
+                font-weight: bold;
+                text-align: center;
+                font-size: 16px;
+            }
         
-        #kyrene-transfer-widget .subtitle {
-            font-size: 20px;
-            text-align: center;
-            margin-top: 10px;
+            #kyrene-transfer-widget .ky-logo-title-container {
+                flex-direction: row;
+                gap: 20px;
+                flex-wrap: nowrap;
+            }
         }
 
-        #kyrene-transfer-widget .notice {
-            background-color: #dadada;
-            color: #000755;
-            padding: 10px;
-            margin: 0;
-            font-weight: bold;
-            text-align: center;
-            font-size: 16px;
-        }
-        
-        #kyrene-transfer-widget .ky-logo-title-container {
-            flex-direction: row;
-            gap: 20px;
-            flex-wrap: nowrap;
-        }
-    }
-
-    /* Mobile optimizations */
+    /* Mobile */
         @media (max-width: 767px) {
-            /* Add some padding on mobile for the blue background */
             body {
                 padding: 10px;
             }
@@ -194,7 +191,6 @@
             }
         }
 
-        /* Very small screens */
         @media (max-width: 480px) {
             body {
                 padding: 5px;
@@ -750,13 +746,13 @@
                         <div class="ky-radio-group">
                             <div class="ky-radio-option">
                                 <input type="radio" id="puebloNorth" name="enrollment"
-                                    value="Resident (North of Warner Rd)">
-                                <label for="puebloNorth">Resident (North of Warner Rd)</label>
+                                    value="Resident (North of Chandler BLVD)">
+                                <label for="puebloNorth">Resident (North of Chandler BLVD)</label>
                             </div>
                             <div class="ky-radio-option">
                                 <input type="radio" id="puebloSouth" name="enrollment"
-                                    value="Resident (South of Warner Rd)">
-                                <label for="puebloSouth">Resident (South of Warner Rd)</label>
+                                    value="Resident (South of Chandler BLVD)">
+                                <label for="puebloSouth">Resident (South of Chandler BLVD)</label>
                             </div>
                             <div class="ky-radio-option">
                                 <input type="radio" id="puebloOpen" name="enrollment" value="Open Enrollment">
@@ -1214,18 +1210,18 @@
             },
             "Pueblo MS": {
                 "6": {
-                    "Resident (North of Warner Rd)": { "2026": "Pueblo MS", "2027": "Kyrene MS", "feeding": "" },
-                    "Resident (South of Warner Rd)": { "2026": "Pueblo MS", "2027": "Aprende MS", "feeding": "" },
+                    "Resident (North of Chandler BLVD)": { "2026": "Pueblo MS", "2027": "Kyrene MS", "feeding": "" },
+                    "Resident (South of Chandler BLVD)": { "2026": "Pueblo MS", "2027": "Aprende MS", "feeding": "" },
                     "Open Enrollment": { "2026": "Pueblo MS", "2027": "Aprende MS", "feeding": "" }
                 },
                 "7": {
-                    "Resident (North of Warner Rd)": { "2026": "Pueblo MS", "2027": "Tempe Union High School District", "feeding": "" },
-                    "Resident (South of Warner Rd)": { "2026": "Pueblo MS", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Resident (North of Chandler BLVD)": { "2026": "Pueblo MS", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Resident (South of Chandler BLVD)": { "2026": "Pueblo MS", "2027": "Tempe Union High School District", "feeding": "" },
                     "Open Enrollment": { "2026": "Pueblo MS", "2027": "Tempe Union High School District", "feeding": "" }
                 },
                 "8": {
-                    "Resident (North of Warner Rd)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
-                    "Resident (South of Warner Rd)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Resident (North of Chandler BLVD)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
+                    "Resident (South of Chandler BLVD)": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" },
                     "Open Enrollment": { "2026": "Tempe Union High School District", "2027": "Tempe Union High School District", "feeding": "" }
                 }
             },
@@ -1783,6 +1779,3 @@
 </body>
 
 </html>
-
-
-
