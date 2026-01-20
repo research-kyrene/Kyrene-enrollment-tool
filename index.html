@@ -1531,6 +1531,12 @@
 
         // Main calculation function - CORRECTED LOGIC FOR 7TH GRADE
         function calculateSchool() {
+
+            // TRACK GA EVENT: Search Submitted
+            gtag('event', 'search_submitted', {
+                event_category: 'School Lookup Tool',
+                event_label: 'Search Submitted'
+            });
             const school = document.getElementById('currentSchool').value;
             const grade = document.getElementById('currentGrade').value;
             const dualLanguage = document.querySelector('input[name="dualLanguage"]:checked')?.value;
@@ -1588,6 +1594,13 @@
                 console.log("Debug - No result for:", school, grade, enrollment, dualLanguage);
                 return;
             }
+
+            // TRACK GA EVENT: Results Returned
+            gtag('event', 'results_returned', {
+                event_category: 'School Lookup Tool',
+                event_label: 'Results Returned'
+            });
+
 
             // Display student information
             const displaySchool = schoolDisplayNames[school] || school;
@@ -1788,5 +1801,6 @@
 </body>
 
 </html>
+
 
 
