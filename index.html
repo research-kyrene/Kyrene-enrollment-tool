@@ -503,6 +503,25 @@
         #kyrene-transfer-widget .ky-special-group {
             display: none;
         }
+        #kyrene-transfer-widget .ky-error {
+            display: none;
+            background-color: #fdeeea;
+            border: 2px solid #d64524;
+            border-left-width: 6px;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            color: #8c2a11;
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        @media (min-width: 768px) {
+            #kyrene-transfer-widget .ky-error {
+                font-size: 16px;
+                padding: 16px 20px;
+            }
+        }
         /* Additional mobile-specific fixes */
         @media (max-width: 767px) {
             #kyrene-transfer-widget {
@@ -712,6 +731,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="ky-error" id="formError" role="alert" aria-live="assertive"></div>
                     <button type="button" class="ky-btn" onclick="calculateSchool()">FIND SCHOOL</button>
                 </form>
             </div>
@@ -1100,6 +1120,7 @@
         }
         // Function to clear CCD and Enrollment radio button selections
         function clearCCDAndEnrollmentSelections() {
+            clearFormError();
             // Clear CCD Program radio buttons
             document.querySelectorAll('input[name="ccdProgram"]').forEach(radio => {
                 radio.checked = false;
@@ -1186,6 +1207,7 @@
         // Handle dual language selection for Akimel
         function handleDualLanguageChange() {
             const dualLanguage = document.querySelector('input[name="dualLanguage"]:checked')?.value;
+            if (dualLanguage) clearFormError();
             const school = document.getElementById('currentSchool').value;
             const grade = document.getElementById('currentGrade').value;
             if (school === "Akimel A-al MS" && grade === "6-7") {
@@ -1207,6 +1229,18 @@
                 return "N/A";
             }
             return document.querySelector('input[name="enrollment"]:checked')?.value;
+        }
+        // In-page validation message (replaces browser alert popups)
+        function showFormError(message) {
+            const box = document.getElementById('formError');
+            box.textContent = message;
+            box.style.display = 'block';
+            box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        function clearFormError() {
+            const box = document.getElementById('formError');
+            box.textContent = '';
+            box.style.display = 'none';
         }
         // Alternate-enrollment link + disclaimer, shown under every result
         function additionalInfoHTML() {
@@ -1230,20 +1264,21 @@
             const enrollment = getEnrollmentValue();
             const ccdProgram = document.querySelector('input[name="ccdProgram"]:checked')?.value;
             // Validate inputs
+            clearFormError();
             if (!school || !grade) {
-                alert("Select a school and grade.");
-                return;
-            }
-            if (!enrollment) {
-                alert("Select an enrollment status.");
-                return;
-            }
-            if (!ccdProgram) {
-                alert("Answer the CCD/CCDS/CCB/CCBS program question.");
+                showFormError("Please select a school and a grade.");
                 return;
             }
             if (school === "Akimel A-al MS" && grade === "6-7" && !dualLanguage) {
-                alert("Select Dual Language participation.");
+                showFormError("Please tell us whether your child participates in the Dual Language program.");
+                return;
+            }
+            if (!enrollment) {
+                showFormError("Please select your child's enrollment status.");
+                return;
+            }
+            if (!ccdProgram) {
+                showFormError("Please answer the CCD, CCDS, CCB, or CCBS program question.");
                 return;
             }
             // Check for CCD program first
@@ -1268,7 +1303,7 @@
                 result = schoolData[school][grade][enrollment];
             }
             if (!result) {
-                alert("No transition information found for these selections. Check your inputs.");
+                showFormError("We couldn't find enrollment information for those selections. Please check your answers and try again.");
                 console.log("Debug - No result for:", school, grade, enrollment, dualLanguage);
                 return;
             }
@@ -1355,6 +1390,7 @@
         // CCD program change handler
         function handleCCDChange() {
             const ccdProgram = document.querySelector('input[name="ccdProgram"]:checked')?.value;
+            if (ccdProgram) clearFormError();
             const grade = document.getElementById('currentGrade').value;
             if (ccdProgram === "Yes" && grade !== "PS") {
                 document.getElementById('ccdMessage').style.display = 'block';
@@ -1366,6 +1402,7 @@
         function resetForm() {
             document.getElementById('schoolForm').reset();
             document.getElementById('resultSection').style.display = 'none';
+            clearFormError();
             document.getElementById('preschoolMessage').style.display = 'none';
             document.getElementById('ccdMessage').style.display = 'none';
             // Clear CCD and Enrollment radio button selections
@@ -1401,6 +1438,10 @@
             // CCD program change listener
             document.querySelectorAll('input[name="ccdProgram"]').forEach(radio => {
                 radio.addEventListener('change', handleCCDChange);
+            });
+            // Enrollment status change listener - hide any validation message
+            document.querySelectorAll('input[name="enrollment"]').forEach(radio => {
+                radio.addEventListener('change', clearFormError);
             });
         });
     </script>
