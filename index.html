@@ -1208,6 +1208,15 @@
             }
             return document.querySelector('input[name="enrollment"]:checked')?.value;
         }
+        // Alternate-enrollment link + disclaimer, shown under every result
+        function additionalInfoHTML() {
+            return `
+                <div style="margin-top: 25px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; font-size: 14px;">
+                    <p style="font-size: 20px; text-align: center;"><strong>If you would like to explore alternate enrollment opportunities, <br>learn more at <a href="https://www.kyrene.org/enroll">www.kyrene.org/enroll</a></strong></p>
+                    <br><p>This tool is for informational purposes only based on information provided above. It is not confirmation of enrollment. Transportation and orientation details will be provided separately. Open enrollment eligibility is evaluated on an annual basis as per Kyrene Board Policy 5-105.</p>
+                </div>
+            `;
+        }
         // Main calculation function - shows the 2027-28 school year only
         function calculateSchool() {
             // TRACK GA EVENT: Search Submitted
@@ -1296,12 +1305,7 @@
             `;
             document.getElementById('tuhsdSection').style.display = isHighSchool ? 'block' : 'none';
             // Add additional info
-            document.getElementById('additionalInfo').innerHTML = `
-                <div style="margin-top: 25px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; font-size: 14px;">
-                    <p style="font-size: 20px; text-align: center;"><strong>If you would like to explore alternate enrollment opportunities, <br>learn more at <a href="https://www.kyrene.org/enroll">www.kyrene.org/enroll</a></strong></p>
-                    <br><p>This tool is for informational purposes only based on information provided above. It is not confirmation of enrollment. Transportation and orientation details will be provided separately. Open enrollment eligibility is evaluated on an annual basis as per Kyrene Board Policy 5-105.</p>
-                </div>
-            `;
+            document.getElementById('additionalInfo').innerHTML = additionalInfoHTML();
             // Show results
             document.getElementById('resultSection').style.display = 'block';
             document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
@@ -1317,10 +1321,12 @@
             document.getElementById('schoolResults').innerHTML = `
                 <div class="ky-transfer-box ky-year-2026" style="width: 100%;">
                     <div class="ky-year-title">Important Information for Preschool Students</div>
-                    <div class="ky-transfer-school" style="font-size: 18px;">All students who are eligible for kindergarten in the 2027-28 school year <br> </br> must enroll when registration opens in January.</div>
+                    <div class="ky-transfer-school" style="font-size: 18px;">All students who are eligible for kindergarten in the 2027-28 school year must enroll when registration opens in February.</div>
                 </div>
             `;
             document.getElementById('tuhsdSection').style.display = 'none';
+            // Add additional info
+            document.getElementById('additionalInfo').innerHTML = additionalInfoHTML();
             document.getElementById('resultSection').style.display = 'block';
             document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
         }
