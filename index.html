@@ -377,6 +377,18 @@
             background-color: #e6f3ff;
             border: 3px solid #0056a9;
         }
+        /* Tempe Union result only */
+        #kyrene-transfer-widget .ky-tuhsd-box {
+            background-color: #f3dfe7;
+            border: 3px solid #8e1845;
+        }
+        #kyrene-transfer-widget .ky-tuhsd-box .ky-year-title {
+            color: #8e1845;
+            border-bottom-color: rgba(142, 24, 69, 0.2);
+        }
+        #kyrene-transfer-widget .ky-tuhsd-box .ky-transfer-school {
+            color: #8e1845;
+        }
         #kyrene-transfer-widget .ky-year-title {
             font-size: 18px;
             font-weight: bold;
@@ -454,36 +466,22 @@
                 margin-top: 25px;
             }
         }
-        #kyrene-transfer-widget .ky-tuhsd-section {
-            background-color: #d8e7f0;
-            border-left: 6px solid #007cbf;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            display: none;
+        #kyrene-transfer-widget .ky-tuhsd-note {
+            font-size: 15px;
+            color: #000755;
+            width: 100%;
+            text-align: center;
+            line-height: 1.4;
             word-wrap: break-word;
         }
         @media (min-width: 768px) {
-            #kyrene-transfer-widget .ky-tuhsd-section {
-                padding: 25px;
-                margin: 25px 0;
-            }
-        }
-        #kyrene-transfer-widget .ky-tuhsd-title {
-            color: #007cbf;
-            font-size: 20px;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-        @media (min-width: 768px) {
-            #kyrene-transfer-widget .ky-tuhsd-title {
-                font-size: 22px;
-                margin-bottom: 15px;
+            #kyrene-transfer-widget .ky-tuhsd-note {
+                font-size: 16px;
             }
         }
         #kyrene-transfer-widget .ky-tuhsd-link {
             display: inline-block;
-            background-color: #007cbf;
+            background-color: #8e1845;
             color: white;
             padding: 12px 20px;
             border-radius: 6px;
@@ -742,12 +740,6 @@
                     </div>
                     <div class="ky-result-title">Enrollment Plan</div>
                     <div class="ky-transfer-container" id="schoolResults">
-                    </div>
-                    <div class="ky-tuhsd-section" id="tuhsdSection">
-                        <div class="ky-tuhsd-title">High School Enrollment Information</div>
-                        <p>Visit the Tempe Union High School District (TUHSD) page for enrollment information.</p>
-                        <a href="https://www.tempeunion.org/enrollment" target="_blank" class="ky-tuhsd-link">TUHSD
-                            Enrollment Page</a>
                     </div>
                     <div id="additionalInfo"></div>
                     <button class="ky-btn ky-btn-secondary" onclick="resetForm()">Check Another Student</button>
@@ -1331,14 +1323,21 @@
             if (result.feeding && grade === "K-4") {
                 feedingHTML = `<div class="ky-feeding-info">Feeds to ${schoolDisplayNames[result.feeding] || result.feeding}</div>`;
             }
+            let tuhsdHTML = '';
+            if (isHighSchool) {
+                tuhsdHTML = `
+                    <p class="ky-tuhsd-note">Visit the Tempe Union High School District (TUHSD) page for enrollment information.</p>
+                    <a href="https://www.tempeunion.org/enrollment" target="_blank" class="ky-tuhsd-link">TUHSD Enrollment Page</a>
+                `;
+            }
             document.getElementById('schoolResults').innerHTML = `
-                <div class="ky-transfer-box ky-year-2027">
+                <div class="ky-transfer-box ky-year-2027${isHighSchool ? ' ky-tuhsd-box' : ''}">
                     <div class="ky-year-title">2027-28 School Year</div>
                     <div class="ky-transfer-school">${nextSchool}</div>
                     ${feedingHTML}
+                    ${tuhsdHTML}
                 </div>
             `;
-            document.getElementById('tuhsdSection').style.display = isHighSchool ? 'block' : 'none';
             // Add additional info
             document.getElementById('additionalInfo').innerHTML = additionalInfoHTML();
             // Show results
@@ -1356,10 +1355,9 @@
             document.getElementById('schoolResults').innerHTML = `
                 <div class="ky-transfer-box ky-year-2027" style="width: 100%;">
                     <div class="ky-year-title">Important Information for Preschool Students</div>
-                    <div class="ky-transfer-school" style="font-size: 18px;"><span>All students who are eligible for kindergarten in the 2027-28 school year<br>must enroll when registration opens in January.</span></div>
+                    <div class="ky-transfer-school" style="font-size: 18px;"><span>All students who are eligible for kindergarten in the 2027-28 school year<br>must enroll when registration opens in February.</span></div>
                 </div>
             `;
-            document.getElementById('tuhsdSection').style.display = 'none';
             // Add additional info
             document.getElementById('additionalInfo').innerHTML = additionalInfoHTML();
             document.getElementById('resultSection').style.display = 'block';
@@ -1383,7 +1381,6 @@
                     </div>
                 </div>
             `;
-            document.getElementById('tuhsdSection').style.display = 'none';
             document.getElementById('resultSection').style.display = 'block';
             document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
         }
